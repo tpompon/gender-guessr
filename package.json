@@ -1,0 +1,26 @@
+{
+  "name": "gender-guessr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "proxy": "http://localhost:8000",
+  "scripts": {
+    "client": "cd client && npm start",
+    "server": "cd server && npm start",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tpompon/gender-guessr.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tpompon/gender-guessr/issues"
+  },
+  "homepage": "https://github.com/tpompon/gender-guessr#readme",
+  "devDependencies": {
+    "concurrently": "^5.0.0"
+  }
+}
