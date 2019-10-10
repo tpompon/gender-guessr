@@ -2,31 +2,38 @@ const express = require('express')
 const cors = require('cors')
 const axios = require('axios')
 const config = require('./config')
+const mysql = require('mysql')
 const readFile = require('readline').createInterface({
   input: require('fs').createReadStream('names.txt')
 })
 
-const app = express()
+require('./db')
 
+const app = express()
 app.use(cors({
   origin:[`http://localhost:3000`, `http://127.0.0.1:3000`]
 }));
 
-// Parse names source file in an array
-let firstnames = [],
-    count      = 0
-
-readFile.on('line', (line) => {
-  if (count < 300)
-    firstnames.push(line.split(' ')[0]); count++
-})
-
 // Functions
 const getRandomFirstname = async () => {
-  const firstname = firstnames[Math.ceil(Math.random() * 299)]
-  const genderReq = await axios.get(`https://api.genderize.io/?name=${firstname.normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`) // Remove accents for API treatement
+  const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "tpompon",
+    database: "genderguessr"
+  })
 
-  return { firstname: firstname, gender: genderReq.data.gender }
+  const randomId = Math.floor(Math.random() * 299)
+  db.query(`SELECT * FROM firstnames WHERE id=${randomId}`, (err, res) => {
+    if (err) throw err
+    const firstname = JSON.parse(JSON.stringify(res))[0].firstname
+    console.log(firstname)
+    db.end()
+  })
+
+  // const genderReq = await axios.get(`https://api.genderize.io/?name=${firstname.normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`) // Remove accents for API treatement
+
+  // return { firstname: firstname, gender: genderReq.data.gender }
 }
 
 // Routes

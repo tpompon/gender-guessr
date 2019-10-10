@@ -50,12 +50,26 @@ const Game = () => {
 	}
 
 	return (
-		<div className="center-abs center" style={{width: 800, maxWidth: '90%'}}>
-			Points: {points} / Status: {status}
+		<div className="center-abs center" style={{fontSize: 28, width: 800, maxWidth: '90%'}}>
+			Points: <span style={{color: points < 10 ? 'red' : 'green', fontWeight: 'bold'}}>{points}</span>
+			<br />
+			{
+				status !== 'playing' ? (
+					<div>
+					{
+						status === 'win' ? (
+							<span style={{color: 'green'}}>Congrats, you won ! :)</span>
+						) : (
+							<span style={{color: 'red'}}>Sorry, you loss :(</span>
+						)
+					}
+					</div>
+				) : <div>Guess the gender of this firstname</div>
+			}
 			{
 				loaded ? (
-					<div className="mt-2" style={{fontSize: 28}}>
-						What is gender of: {firstname.value} ? (answer: {firstname.gender})
+					<div className="mt-2" style={{}}>
+						<h2>{firstname.value}</h2>
 					</div>
 				) : <div className="mt-2">Loading...</div>
 			}
