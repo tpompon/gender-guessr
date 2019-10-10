@@ -24,7 +24,7 @@ readFile.on('line', (line) => {
 // Functions
 const getRandomFirstname = async () => {
   const firstname = firstnames[Math.ceil(Math.random() * 299)]
-  const genderReq = await axios.get(`https://gender-api.com/get?name=${firstname}&key=fqfMYtbgCCxtdjywfs`)
+  const genderReq = await axios.get(`https://api.genderize.io/?name=${firstname.normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`) // Remove accents for API treatement
 
   return { firstname: firstname, gender: genderReq.data.gender }
 }

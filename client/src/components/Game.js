@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-import { ReactComponent as Logo } from '../svg/logo.svg';
 import Button from './Button'
 
 const Game = () => {
 	
-	const [loaded, setLoaded]				= useState(false)
-	const [status, setStatus]				= useState(null)
-	const [points, setPoints]				= useState(10)
-	const [firstname, setFirstname] = useState({
+	const [loaded, setLoaded]		= useState(false)
+	const [status, setStatus]		= useState(null)
+	const [points, setPoints]		= useState(10)
+	const [firstname, setFirstname]	= useState({
 		value: null,
 		gender: null
 	})
@@ -28,7 +27,8 @@ const Game = () => {
 	}, [points])
 
 	useEffect(() => {
-		setLoaded(true)
+		if (firstname.value && firstname.gender)
+			setLoaded(true)
 	}, [firstname])
 
 	const start = async () => {
@@ -51,26 +51,26 @@ const Game = () => {
 
 	return (
 		<div className="center-abs center" style={{width: 800, maxWidth: '90%'}}>
-			<Logo width={50} height={50} />
 			Points: {points} / Status: {status}
-			{/* <Button content="Get random firstname" action={() => start()} /> */}
-			{
-				status !== 'playing' ? (
-					<Button content="Restart" action={() => restart()} />
-				) : null
-			}
 			{
 				loaded ? (
-					<div style={{fontSize: 28}}>
+					<div className="mt-2" style={{fontSize: 28}}>
 						What is gender of: {firstname.value} ? (answer: {firstname.gender})
 					</div>
-				) : <div>Loading...</div>
+				) : <div className="mt-2">Loading...</div>
 			}
-			<div className="row">
-				<Button content="Male" action={() => answer('male')} />
-				<Button className="ml-1" content="Female" action={() => answer('female')} />
-				<Button className="ml-1" content="Unknown" action={() => answer('unknown')} />
-			</div>
+			{
+				status !== 'playing' ? (
+					<div className="row center-h mt-2">
+						<Button content="Restart" action={() => restart()} />
+					</div>
+				) : (
+					<div className="row center-h mt-2">
+						<Button content="Male" action={() => answer('male')} />
+						<Button className="ml-1" content="Female" action={() => answer('female')} />
+					</div>
+				)
+			}
 		</div>
 	)
 }
