@@ -4,7 +4,7 @@ module.exports = {
 		// To replace with your MySQL informations
 		host: "localhost",
 		user: "root",
-		password: "tpompon",
-		name: "test"
+		password: "password",
+		name: "genderguessr"
 	}
 }
