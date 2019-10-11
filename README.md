@@ -18,7 +18,7 @@ When you reach 0 points you loose the game but if you reach 20 points you win.
 
 `cd gender-guessr`
 
-`npm install`
+`npm install`  
 `npm install ./server`  
 `npm install ./client`  
 
@@ -30,7 +30,19 @@ __Before:__ Don't forget to edit in `gender-guessr/server/config.js` the databas
 
 ## Developement
 
-This app took me about 3 days (with some hours each day), I didn't create a Store but it could be an option to have better access on some variables (like points/status) accross the React components
+This app took me about 3 days (with some hours each day), I didn't create a Store but it could be an option to have better access on some variables (like points/status) accross the React components.
+
+__Client:__
+
+- App.js is the entry point of the client React App including the Header and Game component.
+- Styles folder contains my CSS files.
+- I used Hooks for the Game component, there is different states to handle game actions (status/points/firstname), when you land on the page, the game start and ask the server API for a firstname with a gender, when you click on Male or Female, React Game component treats the answer to add or remove point.
+
+__Server:__
+
+- _config.js:_ Configure the variables used in the server files
+- _db.js:_ create the database with table firstnames if doesn't exist and fill it with 300 firstnames from the names.txt file
+- _index.js:_ Express API with routes, /random give a random firstname with a query on the MySQL Database and gives the genre using the [Genderize.io API](https://genderize.io/)
 
 ## Possible improvements
 
