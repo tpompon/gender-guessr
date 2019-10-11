@@ -39,7 +39,7 @@ app.get("/random", async (req, res) => {
   );
 });
 
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
   res.status(200);
   res.send("Gender Guessr! - API");
 });
@@ -50,5 +50,5 @@ app.get("*", (req, res) => {
 });
 
 app.listen(config.port, () => {
-  console.log(`Server listening on http://127.0.0.1:${config.port}/`);
+  console.log(`Server listening on http://localhost:${config.port}/`);
 });
