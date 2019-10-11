@@ -7,10 +7,24 @@ Also, this is a game where you have to guess the gender of the firstname given.
 You start with 10 points, when you're wrong you loose 1 point and when you're right you get 1 point.
 When you reach 0 points you loose the game but if you reach 20 points you win.
 
+## Requirements
+
+- Node.js
+- MySQL
+
 ## How to run it ?
 
-`git clone https://github.com/tpompon/gender-guessr.git`  
-`cd gender-guessr && npm start`
+`git clone https://github.com/tpompon/gender-guessr.git`
+
+`cd gender-guessr`
+
+`npm install`
+`npm install ./server`  
+`npm install ./client`  
+
+`npm start`
+
+_Wait for React Client start on localhost:3000 by default_
 
 __Before:__ Don't forget to edit in `gender-guessr/server/config.js` the database informations with your MySQL credentials/informations
 
