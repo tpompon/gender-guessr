@@ -1,5 +1,5 @@
 {
-  "name": "gender-guessr",
+  "name": "gender-guessr-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
