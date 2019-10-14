@@ -28,7 +28,7 @@ _Wait for React Client start on localhost:3000 by default_
 
 __Before:__ Don't forget to edit in `gender-guessr/server/config.js` the database informations with your MySQL credentials/informations
 
-## Developement
+## Development
 
 This app took me about 3 days (with some hours each day), I didn't create a Store but it could be an option to have better access on some variables (like points/status) accross the React components.
 
